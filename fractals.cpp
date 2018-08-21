@@ -62,10 +62,7 @@ double cr=mapToReal(x,imageWidth,minR,maxR);
 int n=findMandelbrot(cr,ci,maxN);
 
    //map the resulting number to an RGB value
-   int r= (n%256);
-//    int g= (n%256);
-//    int b= (n%256);
-// int r=(((int)(n*sinf(n)))%256);
+int r= ((n*2)%256);
 int g=((n*3)%256);
 int b= (n%256);
    // output it to the image
