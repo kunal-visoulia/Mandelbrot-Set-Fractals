@@ -31,21 +31,11 @@ return i;
 }
 
 int main(){
-// get the required input values from file
-ifstream fin("input.txt");
-int imageWidth, imageheight,maxN;
-double minR, maxR, minI, maxI;
-if(!fin){
-    cout<<"input file error"<<endl;
-cin.ignore();
-return 0;
-}
-fin>>imageWidth>>imageheight>>maxN;
-fin>>minR>>maxR>>minI>>maxI;
-fin.close();
 
-// open the output file, write the ppm header
-ofstream fout("out_img.ppm");
+int imageWidth=1000, imageheight=1000,maxN=1000;
+double minR=-1.5, maxR=0.5, minI=-1.0, maxI=1.0;
+
+ofstream fout("frac.ppm");
 fout<<"P3"<<endl;
 fout<<imageWidth<<" "<<imageheight<<endl;
 fout<<"256"<<endl;
@@ -62,9 +52,13 @@ double cr=mapToReal(x,imageWidth,minR,maxR);
 int n=findMandelbrot(cr,ci,maxN);
 
    //map the resulting number to an RGB value
-int r= ((n*2)%256);
-int g=((n*3)%256);
-int b= (n%256);
+   
+int r= (n*n%256);
+   int g= (n*n%256);
+   int b= (n*n%256);
+
+//int g=((n*3)%256);
+//int b= (n%256);
    // output it to the image
    fout<<r<<" "<<g<<" "<<b<<" ";
     }
